@@ -2,10 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Search, Menu, User, Heart } from "lucide-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 import owlLogo from "@/assets/owl-logo.png";
 
 const Header = () => {
-  const [cartItems] = useState(3); // Mock cart count
+  const { getTotalItems } = useCart();
+  const navigate = useNavigate();
 
   return (
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
@@ -13,13 +16,13 @@ const Header = () => {
         {/* Main header */}
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img src={owlLogo} alt="The Owled Store" className="h-12 w-12" />
             <div className="flex flex-col">
               <h1 className="text-xl font-bold text-owl-brown">The Owled Store</h1>
               <p className="text-xs text-muted-foreground">Handmade with Love</p>
             </div>
-          </div>
+          </Link>
 
           {/* Search bar */}
           <div className="flex-1 max-w-md mx-8">
@@ -43,9 +46,9 @@ const Header = () => {
             </Button>
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-5 w-5" />
-              {cartItems > 0 && (
+              {getTotalItems() > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center text-xs bg-owl-amber text-owl-brown">
-                  {cartItems}
+                  {getTotalItems()}
                 </Badge>
               )}
             </Button>
@@ -58,15 +61,32 @@ const Header = () => {
         {/* Navigation */}
         <nav className="hidden md:flex items-center justify-between py-3 border-t border-border/50">
           <div className="flex items-center gap-8">
-            <Button variant="ghost" className="font-medium">Home</Button>
-            <Button variant="ghost" className="font-medium">Fridge Magnets</Button>
-            <Button variant="ghost" className="font-medium">Phad Paintings</Button>
-            <Button variant="ghost" className="font-medium">Painted Stones</Button>
-            <Button variant="ghost" className="font-medium">Collections</Button>
-            <Button variant="ghost" className="font-medium">About Us</Button>
+            <Link to="/">
+              <Button variant="ghost" className="font-medium">Home</Button>
+            </Link>
+            <Link to="/fridge-magnets">
+              <Button variant="ghost" className="font-medium">Fridge Magnets</Button>
+            </Link>
+            <Link to="/phad-paintings">
+              <Button variant="ghost" className="font-medium">Phad Paintings</Button>
+            </Link>
+            <Link to="/painted-stones">
+              <Button variant="ghost" className="font-medium">Painted Stones</Button>
+            </Link>
+            <Link to="/garden-decor">
+              <Button variant="ghost" className="font-medium">Garden Decor</Button>
+            </Link>
+            <Link to="/collections">
+              <Button variant="ghost" className="font-medium">Collections</Button>
+            </Link>
+            <Link to="/about">
+              <Button variant="ghost" className="font-medium">About Us</Button>
+            </Link>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" className="font-medium">Contact</Button>
+            <Link to="/contact">
+              <Button variant="ghost" className="font-medium">Contact</Button>
+            </Link>
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               Track Order
             </Button>

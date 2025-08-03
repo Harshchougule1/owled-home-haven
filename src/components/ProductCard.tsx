@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardProps {
   id: string;
@@ -31,10 +32,17 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { addToCart } = useCart();
 
   const handleAddToCart = async () => {
     setIsLoading(true);
-    // Simulate API call
+    addToCart({
+      id,
+      name,
+      price,
+      image,
+      category,
+    });
     await new Promise(resolve => setTimeout(resolve, 500));
     setIsLoading(false);
   };

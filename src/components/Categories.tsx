@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { categories } from "@/data/products";
 
 const Categories = () => {
@@ -51,10 +52,12 @@ const Categories = () => {
                     </p>
                   </div>
 
-                  <Button className="w-full bg-owl-brown hover:bg-owl-brown/90 text-primary-foreground group/btn">
-                    Browse Collection
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                  <Link to={`/${category.id}`}>
+                    <Button className="w-full bg-owl-brown hover:bg-owl-brown/90 text-primary-foreground group/btn">
+                      Browse Collection
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>

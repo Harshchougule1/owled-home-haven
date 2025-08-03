@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import { featuredProducts } from "@/data/products";
 
@@ -38,10 +39,12 @@ const FeaturedProducts = () => {
 
         {/* View All Button */}
         <div className="text-center">
-          <Button size="lg" variant="outline" className="border-owl-brown text-owl-brown hover:bg-owl-brown hover:text-primary-foreground group">
-            View All Products
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link to="/collections">
+            <Button size="lg" variant="outline" className="border-owl-brown text-owl-brown hover:bg-owl-brown hover:text-primary-foreground group">
+              View All Products
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

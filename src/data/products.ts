@@ -1,6 +1,7 @@
 import fridgeMagnetsImg from "@/assets/fridge-magnets.jpg";
 import phadPaintingImg from "@/assets/phad-painting.jpg";
 import paintedStonesImg from "@/assets/painted-stones.jpg";
+import gardenDecorImg from "@/assets/garden-decor.jpg";
 
 export interface Product {
   id: string;
@@ -92,6 +93,30 @@ export const featuredProducts: Product[] = [
     description: "Beautiful stones painted with delicate floral patterns using natural pigments and traditional methods.",
     inStock: true,
   },
+  {
+    id: "7",
+    name: "Ceramic Garden Planters Set",
+    price: 1299,
+    originalPrice: 1699,
+    image: gardenDecorImg,
+    rating: 4.7,
+    reviews: 78,
+    category: "Garden Decor",
+    isNew: true,
+    description: "Beautiful ceramic planters with traditional Indian patterns, perfect for your garden or balcony.",
+    inStock: true,
+  },
+  {
+    id: "8",
+    name: "Garden Wind Chimes - Peacock Design",
+    price: 799,
+    image: gardenDecorImg,
+    rating: 4.5,
+    reviews: 65,
+    category: "Garden Decor",
+    description: "Melodious wind chimes with intricate peacock design, handcrafted by traditional artisans.",
+    inStock: true,
+  },
 ];
 
 export const categories = [
@@ -115,5 +140,12 @@ export const categories = [
     description: "Hand-painted decorative stones",
     image: paintedStonesImg,
     productCount: 38,
+  },
+  {
+    id: "garden-decor",
+    name: "Garden Decor",
+    description: "Beautiful outdoor decorative pieces",
+    image: gardenDecorImg,
+    productCount: 32,
   },
 ];
