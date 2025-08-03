@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Custom owl theme colors
+				owl: {
+					amber: 'hsl(var(--owl-amber))',
+					brown: 'hsl(var(--owl-brown))',
+					cream: 'hsl(var(--owl-cream))',
+					warm: 'hsl(var(--owl-warm))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
