@@ -13,16 +13,12 @@ const Hero = () => {
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Content */}
         <div className="space-y-8">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-owl-amber">
-              <Star className="h-5 w-5 fill-current" />
-              <span className="text-sm font-medium">Handcrafted with Tradition</span>
-            </div>
+          <div className="space-y-6">
             <h1 className="text-5xl lg:text-6xl font-bold text-owl-brown leading-tight">
               Discover the Beauty of
               <span className="text-owl-amber block">Indian Craftsmanship</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
               Bringing you authentic Rajasthani art, hand-painted treasures, and unique home decor pieces that tell stories of tradition and heritage.
             </p>
           </div>
@@ -32,25 +28,6 @@ const Hero = () => {
               Shop Collections
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="border-owl-brown text-owl-brown hover:bg-owl-brown hover:text-primary-foreground">
-              Our Story
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="flex gap-8 pt-8 border-t border-border">
-            <div>
-              <div className="text-2xl font-bold text-owl-brown">1000+</div>
-              <div className="text-sm text-muted-foreground">Happy Customers</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-owl-brown">500+</div>
-              <div className="text-sm text-muted-foreground">Unique Products</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-owl-brown">50+</div>
-              <div className="text-sm text-muted-foreground">Artisan Partners</div>
-            </div>
           </div>
         </div>
 

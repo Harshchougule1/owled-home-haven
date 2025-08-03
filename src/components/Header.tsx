@@ -10,21 +10,6 @@ const Header = () => {
   return (
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        {/* Top bar */}
-        <div className="flex items-center justify-between py-2 text-sm border-b border-border/50">
-          <div className="flex items-center gap-4">
-            <span className="text-muted-foreground">Free shipping on orders above ₹999</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              Track Order
-            </Button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              Help & Support
-            </Button>
-          </div>
-        </div>
-
         {/* Main header */}
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -71,14 +56,24 @@ const Header = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8 py-3 border-t border-border/50">
-          <Button variant="ghost" className="font-medium">Home</Button>
-          <Button variant="ghost" className="font-medium">Fridge Magnets</Button>
-          <Button variant="ghost" className="font-medium">Phad Paintings</Button>
-          <Button variant="ghost" className="font-medium">Painted Stones</Button>
-          <Button variant="ghost" className="font-medium">Collections</Button>
-          <Button variant="ghost" className="font-medium">About Us</Button>
-          <Button variant="ghost" className="font-medium">Contact</Button>
+        <nav className="hidden md:flex items-center justify-between py-3 border-t border-border/50">
+          <div className="flex items-center gap-8">
+            <Button variant="ghost" className="font-medium">Home</Button>
+            <Button variant="ghost" className="font-medium">Fridge Magnets</Button>
+            <Button variant="ghost" className="font-medium">Phad Paintings</Button>
+            <Button variant="ghost" className="font-medium">Painted Stones</Button>
+            <Button variant="ghost" className="font-medium">Collections</Button>
+            <Button variant="ghost" className="font-medium">About Us</Button>
+          </div>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" className="font-medium">Contact</Button>
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+              Track Order
+            </Button>
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+              Help & Support
+            </Button>
+          </div>
         </nav>
       </div>
     </header>
