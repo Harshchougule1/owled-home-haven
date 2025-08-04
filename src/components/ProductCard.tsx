@@ -123,22 +123,22 @@ const ProductCard = ({
 
         {/* Add to Cart / Quantity Controls */}
         {isInCart ? (
-          <div className="flex items-center justify-center gap-2 bg-owl-brown/10 rounded-lg p-2">
+          <div className="flex items-center justify-center gap-1 bg-owl-brown/10 rounded-lg p-1">
             <Button
               variant="outline"
               size="icon"
-              className="h-10 w-10 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
+              className="h-12 w-12 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
               onClick={() => updateQuantity(id, cartItem.quantity - 1)}
             >
               -
             </Button>
-            <span className="text-lg font-bold text-owl-brown min-w-[2rem] text-center">
+            <span className="text-lg font-bold text-owl-brown min-w-[1.5rem] text-center">
               {cartItem.quantity}
             </span>
             <Button
               variant="outline"
               size="icon"
-              className="h-10 w-10 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
+              className="h-12 w-12 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
               onClick={() => updateQuantity(id, cartItem.quantity + 1)}
             >
               +
