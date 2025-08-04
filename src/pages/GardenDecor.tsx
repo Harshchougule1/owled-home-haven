@@ -14,19 +14,12 @@ const GardenDecor = () => {
       <Header />
       
       {/* Page Header */}
-      <section className="py-16 bg-gradient-to-br from-owl-warm to-owl-cream">
+      <section className="py-8 bg-gradient-to-br from-owl-warm to-owl-cream">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4">
-            <Link to="/" className="inline-flex items-center gap-2 text-owl-brown hover:text-owl-amber transition-colors mb-4">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Link>
+          <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-owl-brown">
               Garden Decor Collection
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Beautiful outdoor decorative pieces including planters, wind chimes, and garden ornaments
-            </p>
           </div>
         </div>
       </section>
