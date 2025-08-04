@@ -32,7 +32,10 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, updateQuantity, items } = useCart();
+  
+  const cartItem = items.find(item => item.id === id);
+  const isInCart = !!cartItem;
 
   const handleAddToCart = async () => {
     setIsLoading(true);
@@ -118,21 +121,45 @@ const ProductCard = ({
           )}
         </div>
 
-        {/* Add to Cart Button */}
-        <Button
-          onClick={handleAddToCart}
-          disabled={isLoading}
-          className="w-full bg-owl-brown hover:bg-owl-brown/90 text-primary-foreground group/btn"
-        >
-          {isLoading ? (
-            "Adding..."
-          ) : (
-            <>
-              <ShoppingCart className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
-              Add to Cart
-            </>
-          )}
-        </Button>
+        {/* Add to Cart / Quantity Controls */}
+        {isInCart ? (
+          <div className="flex items-center justify-between bg-owl-brown/10 rounded-lg p-2">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
+              onClick={() => updateQuantity(id, cartItem.quantity - 1)}
+            >
+              -
+            </Button>
+            <span className="text-sm font-medium text-owl-brown px-3">
+              {cartItem.quantity} in cart
+            </span>
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
+              onClick={() => updateQuantity(id, cartItem.quantity + 1)}
+            >
+              +
+            </Button>
+          </div>
+        ) : (
+          <Button
+            onClick={handleAddToCart}
+            disabled={isLoading}
+            className="w-full bg-owl-brown hover:bg-owl-brown/90 text-primary-foreground group/btn"
+          >
+            {isLoading ? (
+              "Adding..."
+            ) : (
+              <>
+                <ShoppingCart className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                Add to Cart
+              </>
+            )}
+          </Button>
+        )}
       </CardContent>
     </Card>
   );
