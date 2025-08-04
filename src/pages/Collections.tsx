@@ -100,6 +100,8 @@ const Collections = () => {
                 category={product.category}
                 isNew={product.isNew}
                 isBestseller={product.isBestseller}
+                description={product.description}
+                inStock={product.inStock}
               />
             ))}
           </div>
