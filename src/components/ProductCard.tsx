@@ -158,7 +158,7 @@ const ProductCard = ({
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-12 w-12 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
+                  className="h-12 flex-1 border-owl-brown/20 hover:bg-owl-brown hover:text-white"
                   onClick={() => updateQuantity(id, cartItem.quantity + 1)}
                 >
                   +
