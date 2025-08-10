@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ShoppingCart, Search, Menu, User, Heart, LogOut, Package, UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 import owlLogo from "@/assets/owl-logo.png";
 
 const Header = () => {
@@ -13,11 +14,27 @@ const Header = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const fetchRole = async () => {
+      if (!user) { setIsAdmin(false); return; }
+      const { data } = await (supabase as any)
+        .from('profiles')
+        .select('role')
+        .eq('user_id', user.id)
+        .maybeSingle();
+      if (active) setIsAdmin((data?.role || '').toLowerCase() === 'admin');
+    };
+    fetchRole();
+    return () => { active = false; };
+  }, [user]);
+
   const handleSignOut = async () => {
     await signOut();
     navigate('/');
   };
-
   return (
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -127,6 +144,11 @@ const Header = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
+            {isAdmin && (
+              <Link to="/admin">
+                <Button variant="ghost" className="font-medium">Admin</Button>
+              </Link>
+            )}
             <Link to="/contact">
               <Button variant="ghost" className="font-medium">Contact</Button>
             </Link>
