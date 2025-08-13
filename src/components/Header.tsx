@@ -5,12 +5,14 @@ import { ShoppingCart, Search, Menu, User, Heart, LogOut, Package, UserIcon } fr
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import owlLogo from "@/assets/owl-logo.png";
 
 const Header = () => {
   const { getTotalItems } = useCart();
+  const { getTotalItems: getWishlistItems } = useWishlist();
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -63,9 +65,16 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="relative">
-              <Heart className="h-5 w-5" />
-            </Button>
+            <Link to="/wishlist">
+              <Button variant="ghost" size="icon" className="relative">
+                <Heart className="h-5 w-5" />
+                {getWishlistItems() > 0 && (
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center text-xs bg-owl-amber text-owl-brown">
+                    {getWishlistItems()}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
             
             {user ? (
               <DropdownMenu>

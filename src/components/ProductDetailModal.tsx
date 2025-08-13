@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, ShoppingCart, Star, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 interface ProductDetailModalProps {
   isOpen: boolean;
@@ -26,9 +27,9 @@ interface ProductDetailModalProps {
 
 const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { addToCart, updateQuantity, items } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   
   const cartItem = items.find(item => item.id === product.id);
   const isInCart = !!cartItem;
@@ -52,6 +53,14 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
     });
     await new Promise(resolve => setTimeout(resolve, 500));
     setIsLoading(false);
+  };
+
+  const handleWishlistToggle = () => {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
   };
 
   const discount = product.originalPrice ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
@@ -86,11 +95,11 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
                 variant="ghost"
                 size="icon"
                 className="absolute top-3 right-3 bg-background/80 hover:bg-background"
-                onClick={() => setIsWishlisted(!isWishlisted)}
+                onClick={handleWishlistToggle}
               >
                 <Heart
                   className={`h-4 w-4 ${
-                    isWishlisted ? 'fill-red-500 text-red-500' : 'text-muted-foreground'
+                    isInWishlist(product.id) ? 'fill-red-500 text-red-500' : 'text-muted-foreground'
                   }`}
                 />
               </Button>

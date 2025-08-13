@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 import ProductDetailModal from "./ProductDetailModal";
 interface ProductCardProps {
   id: string;
@@ -33,7 +34,6 @@ const ProductCard = ({
   description,
   inStock
 }: ProductCardProps) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const {
@@ -41,6 +41,7 @@ const ProductCard = ({
     updateQuantity,
     items
   } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const cartItem = items.find(item => item.id === id);
   const isInCart = !!cartItem;
   const handleAddToCart = async () => {
@@ -55,6 +56,28 @@ const ProductCard = ({
     await new Promise(resolve => setTimeout(resolve, 500));
     setIsLoading(false);
   };
+
+  const handleWishlistToggle = () => {
+    if (isInWishlist(id)) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({
+        id,
+        name,
+        price,
+        originalPrice,
+        image,
+        rating,
+        reviews,
+        category,
+        isNew,
+        isBestseller,
+        description,
+        inStock,
+      });
+    }
+  };
+
   const discount = originalPrice ? Math.round((originalPrice - price) / originalPrice * 100) : 0;
   return <>
       <Card className="group relative overflow-hidden bg-card hover:shadow-lg transition-all duration-300 border-border/50 hover:border-owl-amber/50 flex flex-col">
@@ -68,9 +91,9 @@ const ProductCard = ({
         {/* Wishlist button */}
         <Button variant="ghost" size="icon" className="absolute top-3 right-3 z-10 bg-background/80 hover:bg-background" onClick={e => {
         e.stopPropagation();
-        setIsWishlisted(!isWishlisted);
+        handleWishlistToggle();
       }}>
-          <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-muted-foreground'}`} />
+          <Heart className={`h-4 w-4 ${isInWishlist(id) ? 'fill-red-500 text-red-500' : 'text-muted-foreground'}`} />
         </Button>
 
         {/* Product Image - Clickable */}
