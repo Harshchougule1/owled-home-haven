@@ -152,12 +152,16 @@ const Header = () => {
             <Link to="/contact">
               <Button variant="ghost" className="font-medium">Contact</Button>
             </Link>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              Track Order
-            </Button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              Help & Support
-            </Button>
+            <Link to="/orders">
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                Track Order
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                Help & Support
+              </Button>
+            </Link>
           </div>
         </nav>
       </div>
